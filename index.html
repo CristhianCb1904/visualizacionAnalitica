@@ -1,0 +1,283 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+
+    <title>Proyecto de visualización analítica</title>
+</head>
+
+<body>
+
+    <!-- ENCABEZADO -->
+    <header class="header">
+
+        <h1>Task 1. Visualización Analítica</h1>
+
+        <p>
+            Visualización interactiva de la circulación atmosférica
+        </p>
+
+        <span class="tag">
+            SciVis Contest 2026 · Task 1
+        </span>
+
+    </header>
+
+
+    <main>
+
+        <!-- INTRODUCCIÓN -->
+        <div class="section-title">
+
+            <div>
+                <h2>Visualizaciones atmosféricas</h2>
+
+                <p>
+                    Exploración espacial, temporal y estadística
+                    de la dinámica atmosférica.
+                </p>
+            </div>
+
+            <button id="resetDashboard" class="reset-button">
+                ↺ Restaurar vista
+            </button>
+
+        </div>
+
+
+        <!-- DASHBOARD -->
+        <section class="dashboard" id="dashboard">
+
+
+            <!-- 1. GLOBO POR PRESIÓN -->
+            <article class="chart-card main-chart" data-chart="1">
+
+                <div class="chart-heading">
+                    <h3>01 · Circulación atmosférica por presión</h3>
+                    <span class="main-label">Vista principal</span>
+                </div>
+
+                <p>
+                    Representación de la magnitud y dirección
+                    del viento en diferentes niveles de presión.
+                </p>
+
+                <iframe
+                    src="globo_presion.html"
+                    title="Globo atmosférico por presión"
+                    loading="eager">
+                </iframe>
+
+            </article>
+
+
+            <!-- 2. CAPAS UVW -->
+            <article class="chart-card" data-chart="2">
+
+                <div class="chart-heading">
+                    <h3>02 · Componentes U, V y W</h3>
+                </div>
+
+                <p>
+                    Distribución de las componentes del viento
+                    en diferentes niveles verticales.
+                </p>
+
+                <iframe
+                    src="capas_uvw.html"
+                    title="Capas U V W"
+                    loading="lazy">
+                </iframe>
+
+            </article>
+
+
+            <!-- 3. GLOBO TEMPORAL -->
+            <article class="chart-card" data-chart="3">
+
+                <div class="chart-heading">
+                    <h3>03 · Evolución temporal</h3>
+                </div>
+
+                <p>
+                    Exploración de los cambios en la circulación
+                    atmosférica a lo largo de la simulación.
+                </p>
+
+                <iframe
+                    src="globo_tiempo.html"
+                    title="Globo temporal"
+                    loading="lazy">
+                </iframe>
+
+            </article>
+
+
+            <!-- 4. HISTOGRAMA -->
+            <article class="chart-card" data-chart="4">
+
+                <div class="chart-heading">
+                    <h3>04 · Distribución de velocidades</h3>
+                </div>
+
+                <p>
+                    Análisis estadístico de la magnitud del viento
+                    mediante histogramas y percentiles.
+                </p>
+
+                <iframe
+                    src="hist_percentiles.html"
+                    title="Histograma de velocidades"
+                    loading="lazy">
+                </iframe>
+
+            </article>
+
+
+            <!-- 5. MAPA PRESIÓN -->
+            <article class="chart-card" data-chart="5">
+
+                <div class="chart-heading">
+                    <h3>05 · Distribución de vientos y presión</h3>
+                </div>
+
+                <p>
+                    Distribución geográfica de las variables
+                    atmosféricas según la presión.
+                </p>
+
+                <iframe
+                    src="mapa_presion.html"
+                    title="Mapa de presión"
+                    loading="lazy">
+                </iframe>
+
+            </article>
+
+
+            <!-- 6. MAPA U V MAG -->
+            <article class="chart-card" data-chart="6">
+
+                <div class="chart-heading">
+                    <h3>06 · Componentes U, V y magnitud</h3>
+                </div>
+
+                <p>
+                    Comparación espacial de las componentes
+                    horizontales y la magnitud del viento.
+                </p>
+
+                <iframe
+                    src="mapa_uv_mag (1).html"
+                    title="Mapa U V magnitud"
+                    loading="lazy">
+                </iframe>
+
+            </article>
+
+
+            <!-- 7. PANEL DE NIVELES -->
+            <article class="chart-card" data-chart="7">
+
+                <div class="chart-heading">
+                    <h3>07 · Análisis por niveles verticales</h3>
+                </div>
+
+                <p>
+                    Comparación de mapas de magnitud e histogramas
+                    en distintos niveles y tiempos.
+                </p>
+
+                <iframe
+                    src="panel_niveles.html"
+                    title="Panel de niveles"
+                    loading="lazy">
+                </iframe>
+
+            </article>
+
+
+            <!-- 8. DISTRIBUCIÓN UV -->
+            <article class="chart-card" data-chart="8">
+
+                <div class="chart-heading">
+                    <h3>08 · Distribución conjunta U × V</h3>
+                </div>
+
+                <p>
+                    Análisis de las combinaciones y frecuencias
+                    de las componentes zonal y meridional.
+                </p>
+
+                <iframe
+                    src="uv_niveles.html"
+                    title="Distribución U por V"
+                    loading="lazy">
+                </iframe>
+
+            </article>
+
+            <!-- 9. DISTRIBUCIÓN UV -->
+            <article class="chart-card" data-chart="9">
+
+                <div class="chart-heading">
+                    <h3>09 · Evolución Temporal</h3>
+                </div>
+
+                <p>
+                    Análisis de la evolución temporal de las componentes
+                    zonal y meridional.
+                </p>
+
+                <iframe
+                    src="evolucion_temporal.html"
+                    title="Evolución Temporal"
+                    loading="lazy">
+                </iframe>
+
+            </article>
+
+            <!-- 10. DISTRIBUCIÓN UV -->
+            <article class="chart-card" data-chart="10">
+
+                <div class="chart-heading">
+                    <h3>10 · Perfil Vertical</h3>
+                </div>
+
+                <p>
+                    Análisis del perfil vertical
+                </p>
+
+                <iframe
+                    src="perfil_vertical.html"
+                    title="Perfil Vertical"
+                    loading="lazy">
+                </iframe>
+
+            </article>
+
+        </section>
+
+    </main>
+
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="footer">
+
+        Visualización Analítica.
+        Task 1 - Visualización de la circulación atmosférica
+        mediante las variables U, V, W y presión.
+
+    </footer>
+
+
+    <!-- INTERACCIÓN -->
+    <script src="script.js"></script>
+
+</body>
+</html>
