@@ -1,47 +1,69 @@
 
-const dashboard = document.getElementById("dashboard");
+/* =========================================
+   ELEMENTOS DEL DASHBOARD
+========================================= */
 
-const charts = document.querySelectorAll(".chart-card");
+// Tarjetas de visualización
+const cards = document.querySelectorAll(".chart-card");
 
-const resetButton = document.getElementById("resetDashboard");
+// Iframe principal
+const mainFrame = document.getElementById("mainFrame");
+
+// Título del visor
+const activeTitle = document.getElementById("activeTitle");
+
+// Descripción del visor
+const activeDescription =
+    document.getElementById("activeDescription");
 
 
-// Guardar la tarjeta que inicia como principal
-const initialMain = document.querySelector(".main-chart");
+/* =========================================
+   CAMBIAR VISUALIZACIÓN PRINCIPAL
+========================================= */
+
+cards.forEach(card => {
+
+    card.addEventListener("click", () => {
+
+        // Obtener información de la tarjeta
+        const src = card.dataset.src;
+
+        const title = card.dataset.title;
+
+        const description = card.dataset.description;
 
 
-// Intercambiar gráfica principal
-charts.forEach(chart => {
+        // Cambiar la gráfica principal
+        mainFrame.src = src;
 
-    chart.addEventListener("click", () => {
 
-        // Ignorar clic si ya es la principal
-        if (chart.classList.contains("main-chart")) {
-            return;
-        }
+        // Actualizar título
+        activeTitle.textContent = title;
 
-        // Obtener gráfica principal actual
-        const currentMain = dashboard.querySelector(".main-chart");
 
-        // Intercambiar posiciones
-        currentMain.classList.remove("main-chart");
+        // Actualizar descripción
+        activeDescription.textContent = description;
 
-        chart.classList.add("main-chart");
+
+        // Quitar selección anterior
+        cards.forEach(item => {
+
+            item.classList.remove("active");
+
+        });
+
+
+        // Resaltar tarjeta seleccionada
+        card.classList.add("active");
 
     });
 
 });
 
 
-// Restaurar distribución inicial
-resetButton.addEventListener("click", () => {
+/* =========================================
+   INICIALIZACIÓN
+========================================= */
 
-    const currentMain = dashboard.querySelector(".main-chart");
-
-    if (currentMain) {
-        currentMain.classList.remove("main-chart");
-    }
-
-    initialMain.classList.add("main-chart");
-
-});
+console.log("Dashboard DYAMOND GEOS iniciado correctamente.");
+console.log("Visualizaciones disponibles:", cards.length);
