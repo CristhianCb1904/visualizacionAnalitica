@@ -1,7 +1,24 @@
-
 /* =========================================
-   CONFIGURACIÓN GENERAL
+   VARIABLES DE DISEÑO
 ========================================= */
+
+:root {
+    --fondo: #0b1120;
+    --panel: #111c30;
+    --panel-2: #162540;
+    --borde: #263b5c;
+    --borde-suave: #1e2f4a;
+    --texto: #e5e7eb;
+    --texto-fuerte: #f8fafc;
+    --texto-suave: #94a3b8;
+    --acento: #38bdf8;
+    --acento-suave: #0c4a6e;
+    --error: #fca5a5;
+    --radio: 12px;
+    --espacio: clamp(12px, 2.5vw, 28px);
+    --alto-visor: clamp(440px, 74vh, 880px);
+    color-scheme: dark;
+}
 
 * {
     margin: 0;
@@ -14,11 +31,38 @@ html {
 }
 
 body {
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: #0b1120;
-    color: #e5e7eb;
+    font-family: Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
     min-height: 100vh;
-    padding: 30px;
+    padding: var(--espacio);
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+}
+
+button,
+a {
+    font: inherit;
+    color: inherit;
+}
+
+:focus-visible {
+    outline: 2px solid var(--acento);
+    outline-offset: 2px;
+}
+
+.saltar {
+    position: absolute;
+    left: -9999px;
+}
+
+.saltar:focus {
+    left: 16px;
+    top: 16px;
+    z-index: 10;
+    padding: 8px 12px;
+    background: var(--panel);
+    border-radius: 8px;
 }
 
 
@@ -26,238 +70,371 @@ body {
    ENCABEZADO
 ========================================= */
 
-.header {
-    width: 100%;
-    margin-bottom: 35px;
-    padding: 30px;
-
+.encabezado {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px 32px;
+    margin-bottom: var(--espacio);
+    padding: clamp(18px, 3vw, 28px);
     background: linear-gradient(120deg, #142b45, #172554);
-
-    border: 1px solid #263b5c;
-    border-radius: 14px;
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
 }
 
-.header h1 {
-    font-size: 30px;
-    margin-bottom: 10px;
-    color: #ffffff;
+.encabezado > div {
+    max-width: 640px;
 }
 
-.header p {
-    font-size: 15px;
-    color: #a8b7cc;
-    line-height: 1.6;
-}
-
-.header .tag {
+.etiqueta {
     display: inline-block;
-
-    margin-top: 15px;
-    padding: 6px 12px;
-
+    margin-bottom: 10px;
+    padding: 4px 10px;
     background: #164e63;
     color: #a5f3fc;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+}
 
-    border-radius: 20px;
+.encabezado h1 {
+    font-size: clamp(22px, 3.2vw, 30px);
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 6px;
+}
+
+.encabezado p {
+    font-size: 14px;
+    color: #a8b7cc;
+}
+
+.leyenda-variables {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 6px 16px;
+    flex: 1 1 320px;
+    max-width: 520px;
     font-size: 12px;
 }
 
-
-/* =========================================
-   INTRODUCCIÓN
-========================================= */
-
-.section-title {
-    margin: 30px 0 18px;
+.leyenda-variables div {
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
 }
 
-.section-title h2 {
-    font-size: 21px;
-    margin-bottom: 7px;
-    color: #f8fafc;
+.leyenda-variables dt {
+    min-width: 18px;
+    font-weight: 700;
+    color: var(--acento);
 }
 
-.section-title p {
-    color: #94a3b8;
-    font-size: 14px;
-    line-height: 1.6;
+.leyenda-variables dd {
+    color: #cbd5e1;
 }
 
 
 /* =========================================
-   VISOR PRINCIPAL
+   DISTRIBUCIÓN GENERAL
+   Escritorio: visor + panel lateral
 ========================================= */
 
-.main-viewer {
-    background: #111c30;
-
-    border: 1px solid #263b5c;
-    border-radius: 14px;
-
-    padding: 20px;
-    margin-bottom: 35px;
+.diseno {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: var(--espacio);
+    align-items: start;
 }
 
 
-/* INFORMACIÓN DEL VISOR */
+/* =========================================
+   VISOR
+========================================= */
 
-.viewer-heading {
-    margin-bottom: 18px;
+.visor {
+    background: var(--panel);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    padding: clamp(12px, 2vw, 20px);
+    min-width: 0;
 }
 
-.viewer-tag {
+.visor:focus {
+    outline: none;
+}
+
+.visor-cabecera {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px 20px;
+    margin-bottom: 14px;
+}
+
+.visor-texto {
+    flex: 1 1 360px;
+    min-width: 0;
+}
+
+.visor-grupo {
     display: inline-block;
-
     color: #67e8f9;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
 
+.visor h2 {
+    font-size: clamp(17px, 2.2vw, 21px);
+    line-height: 1.3;
+    color: #fff;
+    margin-bottom: 6px;
+}
+
+.visor-texto p {
+    font-size: 13px;
+    color: var(--texto-suave);
+    max-width: 70ch;
+}
+
+.meta-fila {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 12px;
+    margin-top: 10px;
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    list-style: none;
+}
+
+.chips li {
+    padding: 2px 9px;
+    border: 1px solid var(--borde);
+    border-radius: 999px;
+    background: var(--panel-2);
     font-size: 11px;
     font-weight: 600;
-    letter-spacing: 1px;
-
-    margin-bottom: 8px;
+    color: #cbd5e1;
 }
 
-.viewer-heading h2 {
-    font-size: 21px;
-    color: #ffffff;
-
-    margin-bottom: 8px;
+.visor-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 8px;
 }
 
-.viewer-heading p {
+.peso {
+    font-size: 12px;
+    color: var(--texto-suave);
+    font-variant-numeric: tabular-nums;
+}
+
+.boton {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    padding: 6px 12px;
+    background: var(--panel-2);
+    border: 1px solid var(--borde);
+    border-radius: 8px;
     font-size: 13px;
-    color: #94a3b8;
-    line-height: 1.5;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
 }
 
+.boton:hover {
+    border-color: var(--acento);
+    background: #1b3050;
+}
 
-/* CONTENEDOR DEL IFRAME */
-
-.viewer-content {
+.visor-contenido {
+    position: relative;
     width: 100%;
-    height: 760px;
-
+    height: var(--alto-visor);
     overflow: hidden;
-
     border-radius: 9px;
-    background: #0b1120;
+    background: var(--fondo);
+    border: 1px solid var(--borde-suave);
 }
 
-.viewer-content iframe {
-    display: block;
+.visor-contenido:fullscreen {
+    height: 100%;
+    border-radius: 0;
+}
 
+.visor-contenido iframe {
+    display: block;
     width: 100%;
     height: 100%;
-
     border: none;
 }
 
-
-/* =========================================
-   GALERÍA DE VISUALIZACIONES
-========================================= */
-
-.gallery-section {
-    margin-top: 25px;
-}
-
-.dashboard {
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, minmax(0, 1fr));
-
-    gap: 16px;
-}
-
-
-/* =========================================
-   TARJETAS
-========================================= */
-
-.chart-card {
-    position: relative;
-
-    background: #111c30;
-
-    border: 1px solid #26364e;
-    border-radius: 12px;
-
-    padding: 18px;
-
-    min-height: 150px;
-
-    cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-
-/* EFECTO HOVER */
-
-.chart-card:hover {
-    background: #172b45;
-
-    border-color: #38bdf8;
-
-    transform: translateY(-3px);
-}
-
-
-/* NÚMERO DE LA TARJETA */
-
-.card-number {
-    display: inline-block;
-
-    color: #38bdf8;
-
-    font-size: 11px;
-    font-weight: 700;
-
-    letter-spacing: 1px;
-
-    margin-bottom: 12px;
-}
-
-
-/* TÍTULO */
-
-.chart-card h3 {
-    font-size: 14px;
-
-    color: #f1f5f9;
-
-    margin-bottom: 9px;
-
-    line-height: 1.4;
-}
-
-
-/* DESCRIPCIÓN */
-
-.chart-card p {
+.visor-ayuda {
+    margin-top: 10px;
     font-size: 12px;
-
-    color: #94a3b8;
-
-    line-height: 1.5;
+    color: #64748b;
 }
 
 
-/* TARJETA SELECCIONADA */
+/* ESTADOS: CARGANDO / ERROR */
 
-.chart-card.active {
-    background: #172b45;
+.capa-estado {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 24px;
+    text-align: center;
+    background: rgba(11, 17, 32, 0.92);
+    font-size: 14px;
+    color: var(--texto-suave);
+}
 
-    border-color: #38bdf8;
+.capa-estado[hidden] {
+    display: none;
+}
 
-    box-shadow:
-        0 0 0 1px #38bdf8,
-        0 4px 18px #0003;
+.indicador {
+    width: 36px;
+    height: 36px;
+    border: 3px solid var(--borde);
+    border-top-color: var(--acento);
+    border-radius: 50%;
+    animation: girar 0.9s linear infinite;
+}
+
+.capa-estado.error .indicador {
+    display: none;
+}
+
+.capa-estado.error p {
+    color: var(--error);
+    max-width: 46ch;
+}
+
+.estado-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+.estado-acciones[hidden] {
+    display: none;
+}
+
+@keyframes girar {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================
+   GALERÍA POR GRUPOS
+========================================= */
+
+.galeria {
+    position: sticky;
+    top: var(--espacio);
+    max-height: calc(100vh - 2 * var(--espacio));
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.galeria-titulo {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--texto-suave);
+    margin-bottom: 10px;
+}
+
+.galeria,
+.grupo {
+    min-width: 0;
+}
+
+.grupo + .grupo {
+    margin-top: 18px;
+}
+
+.grupo h3 {
+    font-size: 15px;
+    color: var(--texto-fuerte);
+}
+
+.grupo-pregunta {
+    font-size: 12px;
+    color: var(--texto-suave);
+    margin-bottom: 8px;
+}
+
+.tarjetas {
+    display: grid;
+    gap: 8px;
+}
+
+.tarjeta {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2px 10px;
+    width: 100%;
+    padding: 10px 12px;
+    text-align: left;
+    background: var(--panel);
+    border: 1px solid var(--borde-suave);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.tarjeta:hover {
+    background: var(--panel-2);
+    border-color: var(--borde);
+}
+
+.tarjeta.activa {
+    background: var(--panel-2);
+    border-color: var(--acento);
+    box-shadow: inset 3px 0 0 var(--acento);
+}
+
+.tarjeta-numero {
+    grid-row: span 2;
+    align-self: start;
+    color: var(--acento);
+    font-size: 12px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    padding-top: 1px;
+}
+
+.tarjeta-titulo {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--texto-fuerte);
+    line-height: 1.35;
+}
+
+.tarjeta-meta {
+    font-size: 11px;
+    color: var(--texto-suave);
 }
 
 
@@ -265,17 +442,13 @@ body {
    PIE DE PÁGINA
 ========================================= */
 
-.footer {
-    margin-top: 40px;
-    padding: 20px;
-
+.pie {
+    margin-top: var(--espacio);
+    padding: 18px 0 4px;
     text-align: center;
-
-    border-top: 1px solid #26364e;
-
+    border-top: 1px solid var(--borde-suave);
     color: #64748b;
     font-size: 12px;
-    line-height: 1.6;
 }
 
 
@@ -283,70 +456,79 @@ body {
    RESPONSIVE
 ========================================= */
 
+/* Tablet y escritorio pequeño: galería debajo del visor */
 @media (max-width: 1100px) {
 
-    .dashboard {
-        grid-template-columns:
-            repeat(3, minmax(0, 1fr));
+    .diseno {
+        grid-template-columns: minmax(0, 1fr);
     }
 
+    .galeria {
+        position: static;
+        max-height: none;
+        overflow: visible;
+        padding-right: 0;
+    }
+
+    #grupos {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px var(--espacio);
+    }
+
+    .grupo + .grupo {
+        margin-top: 0;
+    }
 }
 
+/* Móvil: galería como carrusel horizontal por grupo */
+@media (max-width: 700px) {
 
-@media (max-width: 900px) {
-
-    body {
-        padding: 18px;
+    :root {
+        --alto-visor: clamp(420px, 72vh, 620px);
     }
 
-    .dashboard {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+    .leyenda-variables {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .viewer-content {
-        height: 600px;
+    .visor-acciones {
+        width: 100%;
     }
 
-    .header h1 {
-        font-size: 26px;
+    #pantallaCompleta {
+        display: none;
     }
 
+    #grupos {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .tarjetas {
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(200px, 72%);
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 6px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .tarjeta {
+        scroll-snap-align: start;
+        min-height: 84px;
+    }
 }
 
+@media (prefers-reduced-motion: reduce) {
 
-@media (max-width: 550px) {
-
-    body {
-        padding: 10px;
+    html {
+        scroll-behavior: auto;
     }
 
-    .header {
-        padding: 20px;
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
     }
-
-    .header h1 {
-        font-size: 23px;
-    }
-
-    .main-viewer {
-        padding: 12px;
-    }
-
-    .viewer-heading h2 {
-        font-size: 18px;
-    }
-
-    .viewer-content {
-        height: 480px;
-    }
-
-    .dashboard {
-        grid-template-columns: 1fr;
-    }
-
-    .chart-card {
-        min-height: 125px;
-    }
-
 }
